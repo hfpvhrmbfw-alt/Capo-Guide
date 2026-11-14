@@ -1,0 +1,60 @@
+/* Capo Guide: nur App-eigenes über Porto (porto/porto.css). Bausteine erweitern, keine neuen Farben. */
+html { overflow-x:clip; -webkit-text-size-adjust:100%; }
+body { overflow-x:clip; -webkit-tap-highlight-color:transparent; }
+button, a, select, input, label.btn { touch-action:manipulation; }
+#app { min-height:100dvh; padding-top:calc(10px + env(safe-area-inset-top, 0px)); padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  padding-left:max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right:max(var(--gutter), env(safe-area-inset-right, 0px)); }
+h2.sub { font:var(--title-weight) 22px/1.15 var(--font-title); margin:28px 0 4px; }
+
+/* Lieder-Regal: Marke als Knopf */
+.shelf .stamp { --pm-size:90px; }
+.shelf .stamp-img { aspect-ratio:3/4; }
+
+/* Einstellknöpfe: Minus, Wert, Plus */
+.controls { display:grid; gap:14px; margin:18px 0 6px; padding:16px; background:var(--surface); border-radius:var(--r-card); }
+.stepper { display:grid; grid-template-columns:1fr 44px minmax(84px, auto) 44px; align-items:center; gap:8px; }
+.stepper .btn { padding:0; justify-content:center; width:44px; }
+.stepper .btn:disabled { opacity:.35; cursor:default; }
+.stepper .btn:disabled:hover { background:transparent; color:var(--ink); }
+.stepper output { text-align:center; font:600 16px/1 var(--font-label); font-variant-numeric:tabular-nums; }
+.field select { width:100%; appearance:none; -webkit-appearance:none;
+  background-image:linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position:calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size:5px 5px; background-repeat:no-repeat; padding-right:34px; }
+.field textarea { font:16px/1.5 var(--font-label); padding:10px var(--s3); background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:14px; width:100%; resize:vertical; min-height:240px; }
+.field textarea:focus { outline:none; border-color:var(--accent-text); box-shadow:0 0 0 3px var(--accent-tint); }
+.field .pillseg { margin-top:2px; }
+
+/* Capo-Vorschläge als Abrisskarten */
+.stat-tickets .ticket[aria-pressed="true"] { --ticket-bg:var(--tanne-tint); }
+.stat-tickets .ticket[aria-pressed="true"] .ticket-stub, .stat-tickets .ticket[aria-pressed="true"] small { color:var(--ink); }
+
+/* Liedblatt */
+.sheet-head { display:flex; justify-content:space-between; align-items:end; gap:12px; flex-wrap:wrap; margin-top:28px; }
+.sheet-head h2.sub { margin:0; }
+.sheet-head .pillseg { min-width:190px; }
+.songsheet { margin:12px 0 0; padding:16px; background:var(--paper); color:var(--paper-ink); border-left:0; border-radius:14px; font:14px/1.6 var(--font-label); overflow-x:auto; white-space:pre; }
+.songsheet .ch { font:inherit; font-weight:600; color:var(--accent-text); background:none; border:0; padding:0; margin:0; cursor:pointer; text-decoration:underline; text-decoration-color:var(--accent-tint); text-decoration-thickness:2px; text-underline-offset:3px; }
+[data-theme="dark"] .songsheet .ch { color:#A8320E; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .songsheet .ch { color:#A8320E; } }
+
+/* Griffbilder */
+.grips { display:grid; grid-template-columns:repeat(auto-fill, minmax(118px, 1fr)); gap:12px; margin:12px 0; }
+.gripcard { display:grid; justify-items:center; gap:6px; padding:12px 8px 14px; background:var(--surface); border:0; border-radius:var(--r-card); color:var(--ink); font:inherit; cursor:pointer; }
+div.gripcard { cursor:default; }
+.gripcard > b { font:var(--title-weight) 20px/1 var(--font-title); }
+.grip { width:100%; max-width:110px; height:auto; }
+.grip .g-str, .grip .g-fret { stroke:var(--ink); stroke-width:1; opacity:.55; }
+.grip .g-nut { stroke:var(--ink); stroke-width:3.5; stroke-linecap:round; }
+.grip .g-dot { fill:var(--accent); }
+.grip .g-open { fill:none; stroke:var(--ink); stroke-width:1.5; }
+.grip .g-x { stroke:var(--muted); stroke-width:1.6; stroke-linecap:round; }
+.grip .g-num { font:600 10px var(--font-label); fill:var(--muted); }
+
+dialog.sheet .grips { grid-template-columns:repeat(3, minmax(0, 1fr)); }
+dialog.sheet .gripcard { background:var(--bg); }
+.editform { display:grid; gap:14px; }
+label.btn { position:relative; }
+.p-actions .btn .icon { width:20px; height:20px; }
+.dock { bottom:calc(14px + env(safe-area-inset-bottom, 0px)); }
+.pillbar button .icon { width:20px; height:20px; }
+.fab .icon { width:26px; height:26px; }

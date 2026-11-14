@@ -1,0 +1,15 @@
+[
+  { "name": "Akkordzeile über Text, +2", "notation": "int", "shift": 2, "flats": false,
+    "text": "G       D/F#     Em      C\nHello darkness my old friend",
+    "expected": "A       E/G#     F#m     D\nHello darkness my old friend" },
+  { "name": "ChordPro, +3 mit b", "notation": "int", "shift": 3, "flats": true,
+    "text": "[G]Some [D/F#]text [Em]here", "expected": "[Bb]Some [F/A]text [Gm]here" },
+  { "name": "Längere Namen verschieben die Spalten nicht dauerhaft", "notation": "int", "shift": 1, "flats": false,
+    "text": "C  F  G | Am", "expected": "C# F# G# | A#m" },
+  { "name": "Deutsche Schreibweise: H und B", "notation": "de", "shift": -1, "flats": true,
+    "text": "C  H7  Em", "expected": "H  B7  Ebm" },
+  { "name": "Englischer Text mit A bleibt Text", "notation": "int", "shift": 2, "flats": false,
+    "text": "A day in the life", "expected": "A day in the life" },
+  { "name": "Klammern und Wiederholung", "notation": "int", "shift": -2, "flats": true,
+    "text": "(Am) G  x2", "expected": "(Gm) F  x2" }
+]

@@ -1,0 +1,21 @@
+{
+  "_info": "Bekannte Griffe in Standardstimmung: der beste gefundene Griff muss genau dieser sein. frets von tiefer E- bis hoher e-Saite, null = nicht anschlagen.",
+  "standard": {
+    "C":     [null, 3, 2, 0, 1, 0],
+    "G":     [3, 2, 0, 0, 0, 3],
+    "D":     [null, null, 0, 2, 3, 2],
+    "A":     [null, 0, 2, 2, 2, 0],
+    "E":     [0, 2, 2, 1, 0, 0],
+    "Am":    [null, 0, 2, 2, 1, 0],
+    "Em":    [0, 2, 2, 0, 0, 0],
+    "Dm":    [null, null, 0, 2, 3, 1],
+    "E7":    [0, 2, 0, 1, 0, 0],
+    "A7":    [null, 0, 2, 0, 2, 0],
+    "Am7":   [null, 0, 2, 0, 1, 0],
+    "Cmaj7": [null, 3, 2, 0, 0, 0],
+    "Fmaj7": [null, null, 3, 2, 1, 0],
+    "G/B":   [null, 2, 0, 0, 0, 3]
+  },
+  "openg": { "G": [null, 0, 0, 0, 0, 0] },
+  "dadgad": { "D": [0, 0, 0, 2, 0, 4] }
+}

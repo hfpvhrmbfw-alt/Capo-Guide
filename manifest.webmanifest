@@ -1,0 +1,16 @@
+{
+  "name": "Capo Guide",
+  "short_name": "Capo Guide",
+  "description": "Akkorde transponieren, Capo-Lagen finden und Griffe in jeder Stimmung sehen.",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EFE5D5",
+  "theme_color": "#EFE5D5",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
