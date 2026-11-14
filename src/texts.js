@@ -44,6 +44,7 @@ export const T = {
   edit: 'Bearbeiten',
   save: 'Speichern',
   cancel: 'Abbrechen',
+  ok: 'OK',
   delete: 'Lied löschen',
   confirmDelete: 'Dieses Lied wirklich löschen?',
   copy: 'Text kopieren',

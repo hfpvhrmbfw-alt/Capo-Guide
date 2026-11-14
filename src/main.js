@@ -44,6 +44,7 @@ async function saveSong(s) {
 async function saveSettings() { await S.setMeta('settings', state.settings); }
 
 function openSheet(html, onClose) {
+  dlg.classList.remove('closing');
   dlg.innerHTML = html;
   dlg.onclose = () => onClose?.(dlg.returnValue);
   dlg.returnValue = '';
@@ -53,10 +54,19 @@ function closeSheet(value = '') {
   if (!dlg.open) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { dlg.close(value); return; }
   dlg.classList.add('closing');
-  dlg.addEventListener('animationend', () => { dlg.classList.remove('closing'); dlg.close(value); }, { once: true });
+  dlg.addEventListener('animationend', () => { if (!dlg.classList.contains('closing')) return; dlg.classList.remove('closing'); dlg.close(value); }, { once: true });
 }
 dlg.addEventListener('click', e => { if (e.target === dlg) closeSheet(); }); // Tipp auf den Hintergrund
 dlg.addEventListener('cancel', e => { e.preventDefault(); closeSheet(); });
+
+/** Rückfrage im eigenen Sheet statt confirm() (läuft auch dort, wo Browser-Dialoge gesperrt sind). */
+function ask(text, okLabel, cancelLabel = T.cancel) {
+  return new Promise(res => {
+    openSheet(U.sheetAsk(text, okLabel, cancelLabel));
+    dlg.querySelector('form').addEventListener('submit', e => { e.preventDefault(); res(e.submitter?.value === 'ok'); closeSheet(); }, { once: true });
+  });
+}
+const tell = text => ask(text, T.ok, null);
 
 function editSong(s, isNew) {
   openSheet(U.sheetEdit(s), async () => {});
@@ -120,7 +130,7 @@ app.addEventListener('click', async e => {
     return;
   }
   if (act === 'delete' && s) {
-    if (!confirm(T.confirmDelete)) return;
+    if (!(await ask(T.confirmDelete, T.delete))) return;
     state.songs.delete(s.id); await S.deleteSong(s.id); location.hash = '#/'; return;
   }
   if (act === 'notation') { state.settings.notation = b.dataset.v; await saveSettings(); return render(); }
@@ -141,11 +151,11 @@ app.addEventListener('change', async e => {
   if (act === 'import' && el.files[0]) {
     const r = parseImport(await el.files[0].text());
     el.value = '';
-    if (!r.ok) { alert(IMPORT_ERRORS[r.error]); return; }
-    if (!confirm(T.confirmImport(r.songs.length))) return;
+    if (!r.ok) { tell(IMPORT_ERRORS[r.error]); return; }
+    if (!(await ask(T.confirmImport(r.songs.length), T.import))) return;
     for (const song of r.songs) { state.songs.set(song.id, song); await S.putSong(song); }
     state.settings = r.settings; await saveSettings();
-    alert(T.imported(r.songs.length)); render();
+    render(); tell(T.imported(r.songs.length));
   }
 });
 
@@ -160,7 +170,7 @@ app.addEventListener('input', e => {
   document.getElementById('cres').innerHTML = U.chordResult(c, shaped, vs, state.settings, state.chordQ);
 });
 
-addEventListener('hashchange', () => { if (dlg.open) dlg.close(); render(true); });
+addEventListener('hashchange', () => { dlg.classList.remove('closing'); if (dlg.open) dlg.close(); render(true); });
 
 // ---------- Start ----------
 

@@ -1,5 +1,5 @@
 // Service Worker: App-Hülle offline, Schriften nach dem ersten Laden aus dem Cache.
-const VERSION = 'capo-guide-v3';
+const VERSION = 'capo-guide-v5';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest',
   'porto/porto.css', 'porto/porto.js',

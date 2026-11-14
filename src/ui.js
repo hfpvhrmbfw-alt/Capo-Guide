@@ -206,3 +206,7 @@ export function sheetChord(name, chord, tuning, capoForShape, settings) {
 ${vs.length ? `<div class="grips">${vs.map(v => `<div class="gripcard"><b>${esc(shapeLabel)}</b>${diagram(v, shapeLabel)}<span class="tag${v.level === 'leicht' ? '' : ' acc'}">${LEVEL_NAMES[v.level]}</span></div>`).join('')}</div>`
     : `<div class="note warn"><span class="cap">${T.chords}</span>${shaped.quality ? T.noGrip : T.unknownChord}</div>`}`;
 }
+
+export function sheetAsk(text, okLabel, cancelLabel) {
+  return `<form method="dialog" class="editform"><p>${esc(text)}</p><div class="p-actions"><button type="submit" class="btn primary" value="ok">${esc(okLabel)}</button>${cancelLabel ? `<button type="submit" class="btn" value="cancel">${esc(cancelLabel)}</button>` : ''}</div></form>`;
+}
